@@ -1,12 +1,12 @@
 package com.deverianerik.myUnsplash.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,8 +34,13 @@ public class ImageController {
 	private UserRepository userRepository;
 
 	@GetMapping
-	public List<ImageDto> getListImage() {
-		return imageRepository.findAll();
+	@CrossOrigin(origins = "http://localhost:4200")
+	public ResponseEntity<?> getListImage() {
+		try {	
+			return ResponseEntity.ok(imageRepository.findAll());
+		} catch (Exception e) {
+			return ResponseEntity.internalServerError().build();
+		}
 	}
 
 	@PostMapping
@@ -55,7 +60,6 @@ public class ImageController {
 		try {
 			Optional<UserDto> userDto = userRepository.findById(USER_ID);
 			StatusDto statusDto = new StatusDto();
-
 			if (userDto.isPresent()) {
 				if (userDto.get().getPassword().equals(password)) {
 					imageRepository.deleteById(idImage);

@@ -16,8 +16,8 @@ public class ImageDto implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String linkImage;
-	private String labelImage;
+	private String url;
+	private String description;
 
 	public Long getId() {
 		return id;
@@ -27,19 +27,19 @@ public class ImageDto implements Serializable {
 		this.id = id;
 	}
 
-	public String getLinkImage() {
-		return linkImage;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setLinkImage(String linkImage) {
-		this.linkImage = linkImage;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
-	public String getLabelImage() {
-		return labelImage;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setLabelImage(String labelImage) {
-		this.labelImage = labelImage;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

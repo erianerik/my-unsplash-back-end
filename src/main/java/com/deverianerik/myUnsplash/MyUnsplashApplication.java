@@ -10,4 +10,5 @@ public class MyUnsplashApplication {
 		SpringApplication.run(MyUnsplashApplication.class, args);
 	}
 
+
 }
