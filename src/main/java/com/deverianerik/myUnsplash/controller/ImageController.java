@@ -55,7 +55,6 @@ public class ImageController {
 	}
 
 	@DeleteMapping("/{idImage}")
-	@Transactional
 	public ResponseEntity<?> removeImage(@PathVariable Long idImage, @RequestBody String password) {
 		try {
 			Optional<UserDto> userDto = userRepository.findById(USER_ID);
